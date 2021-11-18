@@ -1,0 +1,1 @@
+#I need to remove NA values that are missing. My output will be a weight column without NAs
