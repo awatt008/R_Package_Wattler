@@ -16,12 +16,6 @@
             return(plt)
  }
 #'
- surveys%>%
-   filter(!is.na(species_id))%>%
-   filter(!is.na(weight))%>%
-   select(species_id, weight) %>% 
-   boxplot_weight_species(species_id = species_id, weight = weight) 
-#'
  
 
 

@@ -21,14 +21,3 @@ hindfoot_weight_regression <- function(., weight, hindfoot_length){
   return(plt_regression)
 }
 #'
-#'
-#'
-#'
-#'
-mean_surveys%>%
-  filter(!is.na(weight))%>%
-  filter(!is.na(hindfoot_length))%>%
-  select(weight,hindfoot_length)%>%                 
-  group_by(weight,hindfoot_length)%>%
-  hindfoot_weight_regression(weight = weight, hindfoot_length = hindfoot_length)
-#'
