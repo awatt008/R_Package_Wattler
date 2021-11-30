@@ -4,7 +4,7 @@
 #'
 #'@param . is a piped surveys.csv file with weight and hindfoot length selected and grouped
 #'@param weight is weight column from surveys.csv
-#'@parama hindfoot_length is a hindfoot_length column from surveys.csv
+#'@param hindfoot_length is a hindfoot_length column from surveys.csv
 #'@return Returns a linear regression model of weight and hindfoot length, with weight in
 #'x axis, and hindfoot_length in y axis
 #'
