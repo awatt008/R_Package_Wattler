@@ -2,7 +2,6 @@ pandoc: 2.14.0.3
 pkgdown: 2.0.0
 pkgdown_sha: ~
 articles:
-  ProjectTwo: ProjectTwo.html
   Wattler_R_Package_Tutorial: Wattler_R_Package_Tutorial.html
-last_built: 2021-12-07T20:54Z
+last_built: 2021-12-07T20:59Z
 
