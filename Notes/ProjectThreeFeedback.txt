@@ -1,0 +1,5 @@
+
+    Write the code for each of your functions: Good work. Cool use of piping.
+    Document them (Will cover this in class week of Nov. 15): You might consider adding the line @export after the @usage example. It's not wrong not to, but can be a good signal that the documents are over and the code is beginning. 
+    One test per function (Will cover this week of Nov. 15): Very good
+    Add, commit, and push files to GitHub: Looks like it was added, committed and pushed on time. 25/25

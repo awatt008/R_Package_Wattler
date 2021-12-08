@@ -1,0 +1,54 @@
+---
+title: "Wattler R Package"
+author: "Aaron Wattler"
+date: "12/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installation
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+Load in common libraries used by this package
+```{r eval=FALSE}
+library(tidyverse)
+library(ggplot2)
+
+```
+Now we install my R Package
+```{r}
+devtools::install_github("awatt008/R_Package_Wattler")
+library(projects)
+```
+
+Let us download some data for our package:
+```{r eval=FALSE}
+download.file(url = "https://raw.githubusercontent.com/awatt008/R_Package_Wattler/master/Data/surveys.csv", destfile = "data/surveys.csv")
+```
+Now, we load the data
+```{r eval = FALSE}
+surveys <- read_csv("data/surveys.csv")
+```
+##Working Example
+
++ an example of each function and how it works
++ say something about why this is a good thing to do
++ say something about expected output
+
+```{r}
+```
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
