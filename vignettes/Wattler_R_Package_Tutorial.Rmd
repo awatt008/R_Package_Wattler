@@ -22,7 +22,7 @@ library(ggplot2)
 
 ```
 Now we install my R Package
-```{r}
+```{r eval = FALSE}
 devtools::install_github("awatt008/R_Package_Wattler")
 library(projects)
 ```
