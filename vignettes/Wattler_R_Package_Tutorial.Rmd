@@ -11,10 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Installation
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 Load in common libraries used by this package
 ```{r eval=FALSE}
 library(tidyverse)
@@ -40,14 +36,79 @@ surveys <- read_csv("data/surveys.csv")
 + an example of each function and how it works
 + say something about why this is a good thing to do
 + say something about expected output
+```{r eval = FALSE}
+ boxplot_weight_species <- function(., species_id,weight){
+      if(!is.data.frame(surveys)){
+        return("This is not a dataframe")
+      }
+     plt <- ggplot(., mapping = aes(x = weight, y = species_id)) +
+            geom_boxplot()
+            return(plt)
+ }
+```
+
+```{r eval = FALSE}
+surveys%>%
+   filter(!is.na(species_id))%>%
+   filter(!is.na(weight))%>%
+   select(species_id, weight) %>% 
+   boxplot_weight_species(species_id = species_id, weight = weight) 
+
+```
+
+```{r eval = FALSE}
+no_na_weight <- function(., weight){
+  if(any(!is.na(surveys$weight)))
+  scrub_weight_na <- surveys%>%
+  filter(!is.na(weight))
+return(scrub_weight_na)
+}
+```
+
 
 ```{r}
+weight_loss_program <- surveys%>%
+no_na_weight(weight = weight)
+```
+
+```{r weight_loss_program, echo = FALSE}
+weight_loss_program
+```
+
+```{r}
+hindfoot_weight_regression <- function(., weight, hindfoot_length){
+  if(!is.data.frame(surveys)){
+    return("This is not a dataframe")
+  }
+  plt_regression <- ggplot(., aes(x = weight, y = hindfoot_length)) +
+    geom_point(size = .25) + 
+    geom_smooth(method = "lm",     
+                color = "blue",    
+                size = .5,        
+                fill = "black")        
+  return(plt_regression)
+}
+```
+
+```{r}
+plot_of_regression<- surveys%>%
+filter(!is.na(weight))%>%
+filter(!is.na(hindfoot_length))%>%
+select(weight,hindfoot_length)%>%                 
+group_by(weight,hindfoot_length)%>%
+hindfoot_weight_regression(weight = weight, hindfoot_length = hindfoot_length)
+```
+
+```{r plot_of_regression, echo=FALSE}
+
+plot(plot_of_regression)
 ```
 ## Including Plots
 
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
+
 plot(pressure)
 ```
 
