@@ -11,28 +11,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Installation
 
-Load in common libraries used by this package
+First,we're going to load in the libraries we will use with my functions:
 ```{r eval=FALSE}
 library(tidyverse)
 library(ggplot2)
 
 ```
-Now we install my R Package
+
+Let's get my R package from github:
 ```{r eval = FALSE}
 devtools::install_github("awatt008/R_Package_Wattler")
 library(projects)
 ```
 
-Let us download some data for our package:
+Some may need the surveys.csv data, so use this download/install code to get that:
 ```{r eval=FALSE}
 download.file(url = "https://raw.githubusercontent.com/awatt008/R_Package_Wattler/master/Data/surveys.csv", destfile = "data/surveys.csv")
 ```
-Now, we load the data
+Now, we rear the surveys data with the tidyverse library
 ```{r eval = FALSE}
 surveys <- read_csv("data/surveys.csv")
 ```
-##Working Example
+##Functions
 
+Let's take a look at my functions first, then we'll see how they're used with tidyverse:
 + an example of each function and how it works
 + say something about why this is a good thing to do
 + say something about expected output
@@ -47,13 +49,17 @@ surveys <- read_csv("data/surveys.csv")
  }
 ```
 
+The output of the boxplot_weight_species function plus the piped code will return a boxplot with weight and species selected and its corresponding data grouped from the surveys data frame.
 ```{r eval = FALSE}
-surveys%>%
+plotted_weight_species<-surveys%>%
    filter(!is.na(species_id))%>%
    filter(!is.na(weight))%>%
    select(species_id, weight) %>% 
    boxplot_weight_species(species_id = species_id, weight = weight) 
-
+```
+This is how it should look:
+```{r plotted_weight_species, echo=FALSE}
+plot(plotted_weight_species)
 ```
 
 ```{r eval = FALSE}
@@ -65,10 +71,10 @@ return(scrub_weight_na)
 }
 ```
 
-
 ```{r}
 weight_loss_program <- surveys%>%
 no_na_weight(weight = weight)
+weight_loss_program
 ```
 
 ```{r weight_loss_program, echo = FALSE}
