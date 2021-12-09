@@ -25,12 +25,12 @@ library(projects)
 ```
 
 Some may need the surveys.csv data, so use this download/install code to get that:
-```{r eval=FALSE}
-download.file(url = "https://raw.githubusercontent.com/awatt008/R_Package_Wattler/master/Data/surveys.csv", destfile = "data/surveys.csv")
+```{r eval = FALSE}
+download.file(url = "https://raw.githubusercontent.com/awatt008/R_Package_Wattler/master/data/surveys.csv", destfile = "/cloud/project/data/surveys.csv")
 ```
 Now, we rear the surveys data with the tidyverse library
 ```{r eval = FALSE}
-surveys <- read_csv("data/surveys.csv")
+surveys <- read_csv("/cloud/project/data/surveys.csv")
 ```
 ##Functions
 
@@ -57,10 +57,6 @@ plotted_weight_species<-surveys%>%
    select(species_id, weight) %>% 
    boxplot_weight_species(species_id = species_id, weight = weight) 
 ```
-This is how it should look:
-```{r plotted_weight_species, echo=FALSE}
-plot(plotted_weight_species)
-```
 
 ```{r eval = FALSE}
 no_na_weight <- function(., weight){
@@ -69,6 +65,10 @@ no_na_weight <- function(., weight){
   filter(!is.na(weight))
 return(scrub_weight_na)
 }
+```
+This is how it should look:
+```{r plotted_weight_species, echo=FALSE}
+plot(plotted_weight_species)
 ```
 
 ```{r}
