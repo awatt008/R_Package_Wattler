@@ -6,7 +6,7 @@
 #'@param species_id is a species_id column in surveys.csv
 #'@param weight is a weight column in surveys
 #'@return Returns a boxplot model of your species' weight
-#' 
+#'@export 
  boxplot_weight_species <- function(., species_id,weight){
       if(!is.data.frame(surveys)){
         return("This is not a dataframe")

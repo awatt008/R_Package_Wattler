@@ -7,7 +7,7 @@
 #'@param hindfoot_length is a hindfoot_length column from surveys.csv
 #'@return Returns a linear regression model of weight and hindfoot length, with weight in
 #'x axis, and hindfoot_length in y axis
-#'
+#'@export
 hindfoot_weight_regression <- function(., weight, hindfoot_length){
   if(!is.data.frame(surveys)){
     return("This is not a dataframe")

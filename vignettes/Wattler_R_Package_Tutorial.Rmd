@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 First,we're going to load in the libraries we will use with my functions:
 ```{r eval=FALSE}
+install.packages("tidyverse")
+install.packages("ggplot2")
 library(tidyverse)
 library(ggplot2)
 
@@ -28,11 +30,11 @@ Some may need the surveys.csv data, so use this download/install code to get tha
 ```{r eval = FALSE}
 download.file(url = "https://raw.githubusercontent.com/awatt008/R_Package_Wattler/master/data/surveys.csv", destfile = "/cloud/project/data/surveys.csv")
 ```
-Now, we rear the surveys data with the tidyverse library
+Now, we read the surveys data with tidyverse
 ```{r eval = FALSE}
 surveys <- read_csv("/cloud/project/data/surveys.csv")
 ```
-##Functions
+## Functions
 
 Let's take a look at my functions first, then we'll see how they're used with tidyverse:
 + an example of each function and how it works
@@ -58,6 +60,9 @@ plotted_weight_species<-surveys%>%
    boxplot_weight_species(species_id = species_id, weight = weight) 
 ```
 
+Next, we'll look at a function that removes NA's from surveys that only requires inputting the 
+database name plus the function and weight column.
+
 ```{r eval = FALSE}
 no_na_weight <- function(., weight){
   if(any(!is.na(surveys$weight)))
@@ -66,22 +71,18 @@ no_na_weight <- function(., weight){
 return(scrub_weight_na)
 }
 ```
-This is how it should look:
-```{r plotted_weight_species, echo=FALSE}
-plot(plotted_weight_species)
-```
 
-```{r}
-weight_loss_program <- surveys%>%
+
+```{r eval = FALSE}
+surveys%>%
 no_na_weight(weight = weight)
-weight_loss_program
-```
 
-```{r weight_loss_program, echo = FALSE}
-weight_loss_program
 ```
+And now, a function that creates a line of regression for surveys that works once we
+run a pipe that filters NA's, then selects hindfoot and weight, and groups there corresponding
+data.
 
-```{r}
+```{r eval = FALSE}
 hindfoot_weight_regression <- function(., weight, hindfoot_length){
   if(!is.data.frame(surveys)){
     return("This is not a dataframe")
@@ -96,7 +97,7 @@ hindfoot_weight_regression <- function(., weight, hindfoot_length){
 }
 ```
 
-```{r}
+```{r eval = FALSE}
 plot_of_regression<- surveys%>%
 filter(!is.na(weight))%>%
 filter(!is.na(hindfoot_length))%>%
@@ -105,10 +106,6 @@ group_by(weight,hindfoot_length)%>%
 hindfoot_weight_regression(weight = weight, hindfoot_length = hindfoot_length)
 ```
 
-```{r plot_of_regression, echo=FALSE}
-
-plot(plot_of_regression)
-```
 ## Including Plots
 
 You can also embed plots, for example:
