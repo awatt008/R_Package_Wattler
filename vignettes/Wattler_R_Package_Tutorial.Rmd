@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Installation
 
 First,we're going to load in the libraries we will use with my functions:
+
 ```{r eval=FALSE}
 install.packages("tidyverse")
 install.packages("ggplot2")
@@ -21,25 +22,27 @@ library(ggplot2)
 ```
 
 Let's get my R package from github:
+
 ```{r eval = FALSE}
 devtools::install_github("awatt008/R_Package_Wattler")
 library(projects)
 ```
 
 Some may need the surveys.csv data, so use this download/install code to get that:
+
 ```{r eval = FALSE}
 download.file(url = "https://raw.githubusercontent.com/awatt008/R_Package_Wattler/master/data/surveys.csv", destfile = "/cloud/project/data/surveys.csv")
 ```
+
 Now, we read the surveys data with tidyverse
+
 ```{r eval = FALSE}
 surveys <- read_csv("/cloud/project/data/surveys.csv")
 ```
 ## Functions
 
 Let's take a look at my functions first, then we'll see how they're used with tidyverse:
-+ an example of each function and how it works
-+ say something about why this is a good thing to do
-+ say something about expected output
+
 ```{r eval = FALSE}
  boxplot_weight_species <- function(., species_id,weight){
       if(!is.data.frame(surveys)){
@@ -52,6 +55,7 @@ Let's take a look at my functions first, then we'll see how they're used with ti
 ```
 
 The output of the boxplot_weight_species function plus the piped code will return a boxplot with weight and species selected and its corresponding data grouped from the surveys data frame.
+
 ```{r eval = FALSE}
 plotted_weight_species<-surveys%>%
    filter(!is.na(species_id))%>%
@@ -72,15 +76,17 @@ return(scrub_weight_na)
 }
 ```
 
+So, this short line of code below will return surveys data without the NAs:
 
 ```{r eval = FALSE}
 surveys%>%
 no_na_weight(weight = weight)
 
 ```
+
 And now, a function that creates a line of regression for surveys that works once we
-run a pipe that filters NA's, then selects hindfoot and weight, and groups there corresponding
-data.
+run a pipe that filters NA's, selects hindfoot and weight, and groups their corresponding
+data:
 
 ```{r eval = FALSE}
 hindfoot_weight_regression <- function(., weight, hindfoot_length){
@@ -97,6 +103,8 @@ hindfoot_weight_regression <- function(., weight, hindfoot_length){
 }
 ```
 
+And here's that code:
+
 ```{r eval = FALSE}
 plot_of_regression<- surveys%>%
 filter(!is.na(weight))%>%
@@ -106,13 +114,5 @@ group_by(weight,hindfoot_length)%>%
 hindfoot_weight_regression(weight = weight, hindfoot_length = hindfoot_length)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
